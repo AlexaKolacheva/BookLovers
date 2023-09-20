@@ -1,3 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views import View
 
-# Create your views here.
+from .models import Book,Author,Genre
+
+
+class BookListView(View):
+    def get(self, request, *args, **kwargs):
+        books = Book.objects.all()
+        context = {
+            'books':books
+        }
+        return render(request,'book/book_list.html', context=context)
+
+
+class BookDetailView(View):
+    def get(self, request, book_id):
+        books = get_object_or_404(Book, id=book_id)
+        context = {
+            'books':books,
+        }
+        return render(request, 'book/book_detail.html',context=context)
