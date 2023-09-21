@@ -24,7 +24,7 @@ class CustomUser(AbstractUser):
     bio = models.TextField(blank=True)
     phone_number = models.CharField(max_length=15, unique=True)
     birthdate = models.DateField(blank=True, null=True)
-    username = models.CharField(max_length=50, blank=True)
+    username = models.CharField(max_length=50)
 
     objects = CustomUserManager()
     USERNAME_FIELD = 'phone_number'
