@@ -12,6 +12,12 @@
             <img src="https://cdn-icons-png.flaticon.com/512/666/666201.png" alt="User Icon" width="32"
                  height="32">
             {% endif %}
+            <br>
+            <br>
+
+                <p><a href="{% url 'send_friend_request' user_profile.user.id %}" class="btn btn-success" type="submit">
+                + Добавить в друзья
+            </a></p>
             <h2>Профиль пользователя: {{ user_profile.user.username }}</h2>
             <p><strong>Email:</strong> {{ user_profile.user.email }}</p>
             <p><strong>Имя:</strong> {{ user_profile.user.first_name }}</p>

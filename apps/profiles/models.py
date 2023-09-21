@@ -27,5 +27,10 @@ class Friend(models.Model):
     friend = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
                                related_name='user_friends')
 
+    status = models.CharField(max_length=10, choices=(('accepted', 'Принято'),
+                                                      ('rejected', 'Отклонено'),
+                                                      ('pending', 'В ожидании')),
+                              default='pending')
+
     def __str__(self):
-        return f"{self.user.username} - {self.friend.username}"
+        return f"{self.user.username} - {self.friend.username}({self.status})"

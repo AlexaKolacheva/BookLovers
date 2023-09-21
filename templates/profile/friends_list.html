@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Список друзей {% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2>Список друзей</h2>
+    <ul>
+        {% for request in friends_requests %}
+            <li>
+                {{ request.user.username }}
+                <form method="post" action="{% url 'accept_friend_request' user_id=request.user.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Принять</button>
+                </form>
+                <form method="post" action="{% url 'rejected_friend_request' user_id=request.user.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Отклонить</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>У вас нет ожидающих запросов на дружбу.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
