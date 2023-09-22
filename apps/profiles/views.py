@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+
 
 from .models import UserProfile, Friend
 from ..accounts.models import CustomUser
@@ -35,9 +37,15 @@ def friends_list(request):
     friends_requests= Friend.objects.filter(friend=request.user,
                                             status='pending')
 
+    friends = Friend.objects.filter(
+        Q(status='accepted', friend=request.user) | Q(status='accepted', user=request.user)
+    )
+    pending_friends = Friend.objects.filter(status='pending')
 
     context = {
-        'friends_requests': friends_requests
+        'friends_requests': friends_requests,
+        'friends': friends,
+        'pending_friends': pending_friends
     }
 
     return render(request, 'profile/friends_list.html', context=context)

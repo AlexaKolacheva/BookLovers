@@ -5,22 +5,44 @@
 {% block content %}
 <div class="container">
     <h2>Список друзей</h2>
+    <br>
     <ul>
         {% for request in friends_requests %}
             <li>
-                {{ request.user.username }}
-                <form method="post" action="{% url 'accept_friend_request' user_id=request.user.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Принять</button>
-                </form>
-                <form method="post" action="{% url 'rejected_friend_request' user_id=request.user.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Отклонить</button>
-                </form>
+                <p><a href="{{ request.user.user_profile.get_absolute_url }}">{{ request.user.username }} </a> предлагает вам дружбу </p>
+                <br>
+                <div class="d-inline-block">
+                    <form method="post" action="{% url 'accept_friend_request' user_id=request.user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success me-2">Принять</button>
+                    </form>
+                </div>
+                <div class="d-inline-block">
+                    <form method="post" action="{% url 'rejected_friend_request' user_id=request.user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger ms-2">Отклонить</button>
+                    </form>
+                </div>
             </li>
         {% empty %}
             <li>У вас нет ожидающих запросов на дружбу.</li>
         {% endfor %}
     </ul>
+    <br>
+    <br>
+    <ul>
+        {% for friend in friends %}
+            {% if friend.friend == request.user %}
+        <p>Пользователь <a href="{{ friend.user.user_profile.get_absolute_url }}">{{ friend.user.username }} </a> теперь ваш друг!</p>
+            {% endif %}
+
+            {% if friend.friend != request.user %}
+        <p>Пользователь <a href="{{ friend.friend.user_profile.get_absolute_url }}"> {{ friend.friend.username }} </a> принял ваш запрос</p>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <br>
+    <br>
+
 </div>
 {% endblock content %}

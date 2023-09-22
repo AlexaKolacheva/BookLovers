@@ -17,6 +17,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">Book Lovers</a>
+                <a class="navbar-brand" href="{% url 'book_list'%}">Book List</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +30,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  {% if user_profile.profile_picture %}
-                        <img src="{{ user_profile.profile_picture.url}}" alt="" width="36" height="36" style="border-radius: 15px;">
+                        <img src="{{ user_profile.profile_picture.url}}" alt="" width="50" height="50" style="border-radius: 15px;">
                         {% else %}
                         <img src="https://img.wattpad.com/8f19b412f2223afe4288ed0904120a48b7a38ce1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5650722d38464e2d744a515349673d3d2d3234323931353831302e313434336539633161633764383437652e6a7067" alt="" width=" 35" height="35">
                 {% endif %}
