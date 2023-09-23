@@ -50,3 +50,38 @@ class BookDetailView(View):
         return redirect('book_detail', book_id=book_id)
 
 
+def book_genre(request):
+    genres = Genre.objects.all()
+    context = {
+        'genres': genres,
+}
+    return render(request, 'book/book_genre.html', context)
+
+def get_book_by_genre(request, genre_id):
+    genre = Genre.objects.get(pk=genre_id)
+    books_genre = Book.objects.filter(genre=genre)
+    context = {
+        'books_genre': books_genre,
+        'genre': genre
+    }
+
+    return render(request, 'book/book_genre.html', context)
+
+
+def author_book(request):
+    authors = Author.objects.all()
+    context = {
+        'authors': authors,
+}
+    return render(request, 'book/author_book.html', context)
+
+
+def get_book_by_author(request, author_id):
+    author = Author.objects.get(pk=author_id)
+    author_books = Book.objects.filter(author=author)
+    context = {
+        'author_books': author_books,
+        'author': author
+    }
+
+    return render(request, 'book/author_book.html', context)

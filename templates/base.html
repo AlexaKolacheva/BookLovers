@@ -17,8 +17,11 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="/">Book Lovers</a>
-                <a class="navbar-brand" href="{% url 'book_list'%}">Book List</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <a class="navbar-brand" href="{% url 'book_list'%}">Список книг</a>
+                <a class="navbar-brand" href="{% url 'book_genre' %}"> Жанры книг </a>
+                <a class="navbar-brand" href="{% url 'author_book' %}"> Авторы книг </a>
+
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,8 +42,8 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-                <a class="dropdown-item" href="{% url 'my_profile' %}">Profile</a>
-                <a class="dropdown-item" href="{% url 'friends_list' %}">Friends</a>
+                <a class="dropdown-item" href="{% url 'my_profile' %}">Профиль</a>
+                <a class="dropdown-item" href="{% url 'friends_list' %}">Друзья</a>
 
             </div>
         </li>

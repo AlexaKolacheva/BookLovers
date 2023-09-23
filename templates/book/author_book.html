@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h2>Авторы</h2>
+    <br>
+    <br>
+    <ul class="list-group">
+        {% for author in authors %}
+            <li class="list-group-item"><a href="{% url 'get_book_by_author' author.id %}">{{ author.first_name }} {{ author.last_name }} </a></li>
+        {% endfor %}
+    </ul>
+</div>
+<br>
+<br>
+
+ <h2>Книги автора {{ author.first_name }} {{ author.last_name }}:</h2>
+    <ul>
+        {% for author in author_books %}
+
+            <li><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a></li>
+        {% empty %}
+            <li>У этого автора пока нет книг </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'book_list' %}">Back to All Books</a>
+
+{% endblock content %}
